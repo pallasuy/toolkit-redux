@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { increment } from './store/'
+import { increment, decrement, incrementByAmount } from './store/'
 
 function App() {
 
@@ -11,6 +11,8 @@ function App() {
   const { counter } = useSelector(state => state.counter);
 
   const dispatch = useDispatch();
+
+  const [incrementAmount, setIncrementAmount] = useState(1);
 
 
   return (
@@ -23,17 +25,25 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => dispatch(increment())}>
-          count is {counter}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <h1>  count is {counter}</h1>
+      <div className="card" >
+        <button onClick={() => dispatch(increment(incrementAmount))}> Increment </button>
+        <button onClick={() => dispatch(decrement(incrementAmount))}> Decrement </button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+      <div className='number'>
+        <label> Amount </label>
+        <input
+          type='number'
+          id='amount'
+          placeholder='Add value'
+          value={incrementAmount}
+          onChange={(e) => { setIncrementAmount(Number(e.target.value) ?? 1) }}
+        />
+
+      </div>
+
+      <p>
+        By GPallas
       </p>
     </>
   )
