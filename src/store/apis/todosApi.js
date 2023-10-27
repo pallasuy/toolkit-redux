@@ -6,7 +6,7 @@ export const todosApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: 'https://jsonplaceholder.typicode.com'
     }),
-    endpoints: ((builder) => {
+    endpoints: (builder) => ({
         getTodos: builder.query({
             query: () => '/todos'
         })
